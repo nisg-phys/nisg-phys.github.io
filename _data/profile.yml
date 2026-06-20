@@ -1,0 +1,150 @@
+name: Nishant Gupta, Ph.D.
+kicker: AI Researcher • Agentic Systems • Scientific Machine Intelligence
+role: Research-minded AI engineer building robust multi-agent and LLM-powered systems.
+location: Bengaluru, India
+summary: >
+  I build AI systems that combine agentic workflows, retrieval, evaluation, and
+  scientific rigor. My background in theoretical physics informs how I design
+  reasoning pipelines that are structured, inspectable, and production-ready.
+footer: >
+  Building polished AI systems for real-world reasoning, automation, and
+  scientific discovery.
+
+navigation:
+  - title: Home
+    url: /
+  - title: About
+    url: /about/
+  - title: Research
+    url: /research/
+  - title: Projects
+    url: /projects/
+  - title: Experience
+    url: /experience/
+  - title: Contact
+    url: /contact/
+
+socials:
+  - label: GitHub
+    url: https://github.com/nisg-phys
+  - label: LinkedIn
+    url: https://linkedin.com/in/nishantg93
+
+focus:
+  title: Reliable agentic workflows for enterprise and scientific use cases
+  description: >
+    Currently focused on designing orchestration layers, evaluation loops, and
+    domain-aware reasoning systems that move beyond demos into repeatable,
+    measurable production behavior.
+
+facts:
+  - label: Current Work
+    value: Agentic AI Systems
+  - label: Background
+    value: Theoretical Physics
+  - label: Core Stack
+    value: LangGraph, Python, RAG
+
+research_themes:
+  - title: Agentic Workflow Design
+    description: >
+      Building multi-step LLM systems that can plan, coordinate tools, manage
+      state, and stay aligned with domain constraints.
+  - title: Evaluation and Reliability
+    description: >
+      Creating evaluation pipelines for reasoning-heavy applications where
+      correctness, traceability, and failure analysis matter as much as fluency.
+  - title: Scientific and Symbolic AI
+    description: >
+      Exploring how language models can support technical problem solving,
+      structured knowledge retrieval, and mathematically informed workflows.
+  - title: Retrieval-Augmented Intelligence
+    description: >
+      Designing systems that blend dense retrieval, lexical search, and
+      context-aware prompting for accurate specialized assistance.
+
+projects:
+  - title: Autonomous Multi-Agent Data Analysis System
+    label: Multi-agent analytics
+    description: >
+      A LangGraph-based autonomous workflow for exploratory data analysis,
+      machine learning, report generation, and quality review through
+      coordinated AI agents.
+    stack:
+      - LangGraph
+      - Python
+      - LLM evaluation
+    url: https://github.com/nisg-phys/Autonomous-Data-Analysis-Agents
+    cta: View project
+  - title: Production RAG System for Python Documentation
+    label: Retrieval systems
+    description: >
+      A retrieval-augmented generation stack combining FastAPI, Pinecone,
+      embeddings, BM25 retrieval, and hosted LLM inference for developer help.
+    stack:
+      - FastAPI
+      - Pinecone
+      - BM25
+    url: https://github.com/nisg-phys/RAG-for-Python3.14
+    cta: View project
+  - title: INSPIRE HEP LangChain Integration
+    label: Open-source contribution
+    description: >
+      An open-source LangChain integration enabling AI agents to query and
+      retrieve scientific literature through the INSPIRE HEP API.
+    stack:
+      - LangChain
+      - APIs
+      - Scientific search
+    url: https://github.com/langchain-ai/langchain-community/pull/546
+    cta: View contribution
+
+experience:
+  - title: Development Engineer
+    org: Target India
+    period: 2026 - Present
+    summary: >
+      Designing LangGraph-based agentic workflows for retail automation,
+      translating merchandising logic and business constraints into
+      production-grade AI systems.
+  - title: Research Associate
+    org: NISER
+    period: 2024 - Present
+    summary: >
+      Developing numerical and symbolic computation frameworks for theoretical
+      physics research, with an emphasis on rigorous modeling and reproducible analysis.
+  - title: Physics and AI Expert
+    org: FlowAI
+    period: 2025 - 2026
+    summary: >
+      Contributed to scientific reasoning benchmarks and evaluation workflows
+      for language models operating on mathematical and symbolic tasks.
+
+education:
+  - degree: Ph.D. in Theoretical Physics
+    school: The Institute of Mathematical Sciences
+  - degree: M.Sc. in Physics
+    school: Indian Institute of Technology Madras
+
+skill_groups:
+  - title: LLM Systems
+    items:
+      - LangGraph
+      - LangChain
+      - Agentic AI
+      - RAG
+      - Evaluation pipelines
+  - title: Engineering
+    items:
+      - Python
+      - FastAPI
+      - Pydantic
+      - Databricks
+      - AWS S3
+  - title: ML and Research
+    items:
+      - PyTorch
+      - TensorFlow
+      - Scientific computing
+      - Symbolic workflows
+      - Numerical methods

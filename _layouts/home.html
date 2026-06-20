@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site.title }} | AI Researcher</title>
+    <meta
+      name="description"
+      content="{{ page.description | default: site.description }}"
+    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  </head>
+  <body>
+    <div class="site-shell">
+      {% include site-nav.html %}
+
+      <main>
+        <section class="hero">
+          <div class="container hero-grid">
+            <div class="hero-copy">
+              <p class="eyebrow">{{ site.data.profile.kicker }}</p>
+              <h1>{{ site.data.profile.name }}</h1>
+              <p class="hero-role">{{ site.data.profile.role }}</p>
+              <p class="lead">{{ site.data.profile.summary }}</p>
+
+              <div class="hero-actions">
+                <a class="button button-primary" href="{{ '/projects/' | relative_url }}">View Projects</a>
+                <a class="button button-secondary" href="{{ '/contact/' | relative_url }}">Get in Touch</a>
+              </div>
+
+              {% include social-links.html %}
+            </div>
+
+            <aside class="hero-panel">
+              <div class="card hero-card">
+                <p class="meta">Current Focus</p>
+                <h2>{{ site.data.profile.focus.title }}</h2>
+                <p>{{ site.data.profile.focus.description }}</p>
+              </div>
+
+              <div class="hero-facts">
+                {% for fact in site.data.profile.facts %}
+                  <div class="fact-card">
+                    <span class="fact-label">{{ fact.label }}</span>
+                    <strong>{{ fact.value }}</strong>
+                  </div>
+                {% endfor %}
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <div class="container home-content">
+          {{ content }}
+        </div>
+      </main>
+
+      {% include site-footer.html %}
+    </div>
+  </body>
+</html>
