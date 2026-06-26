@@ -1,28 +1,8 @@
-name: Nishant Gupta, Ph.D.
-kicker: AI Researcher • Agentic Systems • Scientific Machine Intelligence
-role: Research-minded AI engineer building robust multi-agent and LLM-powered systems.
 location: Bengaluru, India
 summary: >
   I build AI systems that combine agentic workflows, retrieval, evaluation, and
   scientific rigor. My background in theoretical physics informs how I design
   reasoning pipelines that are structured, inspectable, and production-ready.
-footer: >
-  Building polished AI systems for real-world reasoning, automation, and
-  scientific discovery.
-
-navigation:
-  - title: Home
-    url: /
-  - title: About
-    url: /about/
-  - title: Research
-    url: /research/
-  - title: Projects
-    url: /projects/
-  - title: Experience
-    url: /experience/
-  - title: Contact
-    url: /contact/
 
 socials:
   - label: GitHub
@@ -36,14 +16,6 @@ focus:
     Currently focused on designing orchestration layers, evaluation loops, and
     domain-aware reasoning systems that move beyond demos into repeatable,
     measurable production behavior.
-
-facts:
-  - label: Current Work
-    value: Agentic AI Systems
-  - label: Background
-    value: Theoretical Physics
-  - label: Core Stack
-    value: LangGraph, Python, RAG
 
 research_themes:
   - title: Agentic Workflow Design
