@@ -1,14 +1,7 @@
 title: Nishant Gupta
-description: AI researcher and engineer building agentic systems, evaluation pipelines, and scientific AI tools.
-url: "https://nisg-phys.github.io"
-baseurl: ""
-markdown: kramdown
-permalink: pretty
+description: AI Engineer | Physicist | Builder
 
-defaults:
-  - scope:
-      path: ""
-    values:
-      layout: default
+theme:  minimal-mistakes-jekyll
 
-collections_dir: collections
+plugins:
+  - jekyll-feed
