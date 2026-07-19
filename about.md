@@ -1,28 +1,44 @@
 ---
 title: About
 permalink: /about/
+classes: wide
 ---
 
-I work on AI systems that need more than a good prompt. My interests are in building structured workflows around language models, especially when the task requires memory, tool use, retrieval, or domain-specific constraints.
+I build AI systems that need more than a prompt: retrieval, tool use, memory, evaluation, and domain-specific constraints all have to work together.
 
-My transition from theoretical physics to AI engineering shaped how I think: start from first principles, make the system observable, and evaluate it with enough rigor that we can trust outputs in real settings.
+My background in theoretical physics shaped how I work: start from first principles, make behavior observable, and evaluate systems tightly enough to trust them in practice.
 
-## At a glance
+<div class="detail-grid">
+  <article class="detail-card">
+    <p class="section-kicker">Current focus</p>
+    <h2>{{ site.data.profile.focus.title }}</h2>
+    <p>{{ site.data.profile.focus.description }}</p>
+  </article>
+  <article class="detail-card">
+    <p class="section-kicker">Based in</p>
+    <h2>{{ site.data.profile.location }}</h2>
+    <p>Working across AI engineering, evaluation, and scientific machine intelligence.</p>
+  </article>
+</div>
 
-- **Location:** {{ site.data.profile.location }}
-- **Current focus:** {{ site.data.profile.focus.description }}
+## Research interests
 
-## Research themes
-
+<div class="card-grid">
 {% for theme in site.data.profile.research_themes %}
-### {{ theme.title }}
-
-{{ theme.description }}
-
+  <article class="content-card">
+    <h3>{{ theme.title }}</h3>
+    <p>{{ theme.description }}</p>
+  </article>
 {% endfor %}
+</div>
+
 ## Education
 
+<div class="list-grid">
 {% for item in site.data.profile.education %}
-- **{{ item.degree }}**  
-  {{ item.school }}
+  <article class="list-card">
+    <h3>{{ item.degree }}</h3>
+    <p>{{ item.school }}</p>
+  </article>
 {% endfor %}
+</div>

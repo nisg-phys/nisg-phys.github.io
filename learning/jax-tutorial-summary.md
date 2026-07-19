@@ -1,9 +1,6 @@
 ---
-title: JAX Preliminaries: Core Concepts Summary
 permalink: /learning/jax-tutorial-summary/
 ---
-
-# JAX Preliminaries: Core Concepts Summary
 
 Source repository: [nisg-phys/Jax_tutorial](https://github.com/nisg-phys/Jax_tutorial)
 

@@ -13,7 +13,7 @@ plugins:
 
 author:
   name: "Nishant Gupta, Ph.D."
-  bio: "Research-minded AI engineer building robust multi-agent and LLM-powered systems."
+  bio: "AI engineer focused on retrieval, evaluation, and agent workflows."
   location: "Bengaluru, India"
   links:
     - label: "GitHub"
@@ -29,4 +29,4 @@ defaults:
       type: pages
     values:
       layout: single
-      author_profile: true
+      author_profile: false

@@ -1,29 +1,41 @@
 ---
 title: Research
 permalink: /research/
+classes: wide
 ---
 
-## Research themes
+## Theoretical physics publications
 
-{% for theme in site.data.profile.research_themes %}
-### {{ theme.title }}
+Publication records and citation details are available through my [INSPIRE-HEP profile]({{ site.data.profile.theoretical_physics_publications.citation_summary_url }}).
 
-{{ theme.description }}
-
+<div class="publication-list">
+{% for paper in site.data.profile.theoretical_physics_publications.items %}
+  <article class="publication-item">
+    <h3>{{ paper.title }}</h3>
+    <p>{{ paper.authors | join: ", " }}</p>
+    <p><a href="{{ paper.url }}">{{ paper.venue }}</a></p>
+  </article>
 {% endfor %}
-## Working style
+</div>
 
-I prefer AI systems that can be decomposed into understandable parts: retrieval, planning, execution, reflection, and evaluation. This makes it easier to debug failures and improve behavior systematically.
+## AI research interests
 
-## Where this matters
-
-Enterprise automation, technical reasoning, and scientific discovery all benefit from workflows that are constraint-aware and measurable. Those are the environments where I want AI systems to be most useful.
+<div class="card-grid">
+{% for theme in site.data.profile.research_themes %}
+  <article class="content-card">
+    <h3>{{ theme.title }}</h3>
+    <p>{{ theme.description }}</p>
+  </article>
+{% endfor %}
+</div>
 
 ## Technical toolkit
 
+<div class="list-grid">
 {% for group in site.data.profile.skill_groups %}
-### {{ group.title }}
-
-{{ group.items | join: ", " }}
-
+  <article class="list-card">
+    <h3>{{ group.title }}</h3>
+    <p>{{ group.items | join: ", " }}</p>
+  </article>
 {% endfor %}
+</div>
