@@ -5,6 +5,8 @@ main:
     url: /research/
   - title: "Projects"
     url: /projects/
+  - title: "Learning"
+    url: /learning/
   - title: "Experience"
     url: /experience/
   - title: "Contact"
