@@ -4,26 +4,24 @@ permalink: /experience/
 classes: wide
 ---
 
-The work below spans production AI systems, scientific computation, and model evaluation.
+{{ site.data.profile.experience_intro }}
 
 <div class="timeline-list">
-{% for role in site.data.profile.experience %}
+{% for role in site.data.profile.experience_timeline %}
   <article class="timeline-item">
     <p class="section-kicker">{{ role.period }}</p>
     <h2>{{ role.title }}</h2>
-    <p class="meta-line">{{ role.org }}</p>
+    <p class="meta-line">{{ role.org }}{% if role.location %} • {{ role.location }}{% endif %}</p>
+    {% if role.summary %}
     <p>{{ role.summary }}</p>
-  </article>
-{% endfor %}
-</div>
-
-## Education
-
-<div class="list-grid">
-{% for item in site.data.profile.education %}
-  <article class="list-card">
-    <h3>{{ item.degree }}</h3>
-    <p>{{ item.school }}</p>
+    {% endif %}
+    {% if role.bullets %}
+    <ul class="content-list">
+      {% for bullet in role.bullets %}
+      <li>{{ bullet }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
   </article>
 {% endfor %}
 </div>

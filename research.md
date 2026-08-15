@@ -4,6 +4,33 @@ permalink: /research/
 classes: wide
 ---
 
+{{ site.data.profile.research_intro }}
+
+## Current interests
+
+<article class="content-card">
+  <ul class="content-list">
+  {% for interest in site.data.profile.research_interests %}
+    <li>{{ interest }}</li>
+  {% endfor %}
+  </ul>
+</article>
+
+## Physics background
+
+{{ site.data.profile.physics_research_summary }}
+
+## Academic links
+
+<div class="list-grid">
+{% for link in site.data.profile.academic_links %}
+  <article class="list-card">
+    <h3>{{ link.label }}</h3>
+    <p><a href="{{ link.url }}">{{ link.url }}</a></p>
+  </article>
+{% endfor %}
+</div>
+
 ## Theoretical physics publications
 
 Publication records and citation details are available through my [INSPIRE-HEP profile]({{ site.data.profile.theoretical_physics_publications.citation_summary_url }}).
@@ -18,24 +45,24 @@ Publication records and citation details are available through my [INSPIRE-HEP p
 {% endfor %}
 </div>
 
-## AI research interests
+## Upcoming preprint
 
-<div class="card-grid">
-{% for theme in site.data.profile.research_themes %}
-  <article class="content-card">
-    <h3>{{ theme.title }}</h3>
-    <p>{{ theme.description }}</p>
+<div class="list-grid">
+{% for item in site.data.profile.upcoming_preprints %}
+  <article class="list-card">
+    <h3>{{ item.title }}</h3>
   </article>
 {% endfor %}
 </div>
 
-## Technical toolkit
+## Selected talks
 
 <div class="list-grid">
-{% for group in site.data.profile.skill_groups %}
+{% for talk in site.data.profile.selected_talks %}
   <article class="list-card">
-    <h3>{{ group.title }}</h3>
-    <p>{{ group.items | join: ", " }}</p>
+    <p class="section-kicker">{{ talk.period }}</p>
+    <h3>{{ talk.title }}</h3>
+    <p>{{ talk.venue }}</p>
   </article>
 {% endfor %}
 </div>

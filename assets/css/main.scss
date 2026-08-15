@@ -134,6 +134,10 @@ h4 {
   margin: 0;
 }
 
+.home-intro__lead + .home-intro__lead {
+  margin-top: 1rem;
+}
+
 .home-intro__actions {
   display: flex;
   flex-wrap: wrap;
@@ -218,6 +222,15 @@ h4 {
 
 .project-links span {
   color: var(--ink-soft);
+}
+
+.content-list {
+  margin: 0.9rem 0 0 1.25rem;
+  padding: 0;
+}
+
+.content-list li {
+  margin-bottom: 0.45rem;
 }
 
 .detail-card h2,

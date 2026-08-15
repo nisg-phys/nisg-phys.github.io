@@ -4,9 +4,7 @@ permalink: /contact/
 classes: wide
 ---
 
-I am open to conversations about retrieval systems, agent workflows, evaluation, and scientific AI applications.
-
-## Links
+{{ site.data.profile.contact_intro }}
 
 <div class="list-grid">
 {% for item in site.data.profile.socials %}

@@ -4,7 +4,7 @@ permalink: /learning/
 classes: wide
 ---
 
-Notes and summaries from topics I am actively studying.
+{{ site.data.profile.learning_intro }}
 
 <div class="card-grid">
   <article class="content-card">

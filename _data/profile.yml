@@ -1,7 +1,4 @@
 location: Bengaluru, India
-summary: >
-  I build AI systems for retrieval, tool use, and multi-step reasoning, with a
-  focus on evaluation, observability, and reliable deployment.
 
 socials:
   - label: GitHub
@@ -9,33 +6,151 @@ socials:
   - label: LinkedIn
     url: https://linkedin.com/in/nishantg93
 
-focus:
-  title: Evaluation-driven AI systems
-  description: >
-    Designing agent workflows, retrieval systems, and evaluation loops for
-    enterprise and scientific applications.
+home_intro:
+  - >
+    I am an AI engineer with a PhD in theoretical physics. I currently build
+    retail automation systems for Target India via eTeam India, and I am most
+    interested in work that sits between research curiosity and practical
+    engineering.
+  - >
+    This site is a quieter home for both sides of that work: the systems I
+    build, the physics background that still shapes how I think, and the
+    research questions I keep returning to when engineering alone is not the
+    whole story.
 
-research_themes:
-  - title: Agentic Workflow Design
+home_now:
+  title: What I am working on now
+  description: >
+    My current work is in retail AI systems: skills-based workflows,
+    architecture experiments, evaluation, and the day-to-day task of comparing
+    approaches on accuracy, cost, and operational reliability before they are
+    trusted in production.
+
+home_links:
+  - label: Research
+    title: Physics and AI research
+    url: /research/
     description: >
-      Multi-step LLM systems that plan, use tools, manage state, and operate
-      within domain constraints.
-  - title: Evaluation and Reliability
+      Publications, research interests, selected talks, and the questions that
+      still connect my physics background with active AI research.
+  - label: Projects
+    title: Engineering projects
+    url: /projects/
     description: >
-      Evaluation pipelines for reasoning-heavy applications where correctness,
-      traceability, and failure analysis matter.
-  - title: Scientific and Symbolic AI
+      A small set of projects in retrieval, agent workflows, and tools that I
+      wanted to make useful beyond the demo stage.
+  - label: Contact
+    title: Get in touch
+    url: /contact/
     description: >
-      Language-model workflows for technical problem solving, structured
-      retrieval, and mathematically informed reasoning.
-  - title: Retrieval-Augmented Intelligence
-    description: >
-      Retrieval systems that combine dense search, lexical search, and
-      context-aware prompting for specialized assistance.
+      The easiest way to reach me for conversations about AI systems, research,
+      or collaborative work.
+
+about_story:
+  - >
+    I currently work as an AI engineer building retail automation systems for
+    Target India via eTeam India. A lot of that work is not about chasing a
+    single framework. It is about choosing workable architectures, comparing
+    them carefully, and making them observable enough to trust when the problem
+    is messy and the constraints are real.
+  - >
+    Before moving fully into AI engineering, I spent years in theoretical
+    physics working on asymptotic symmetries, holography, Carrollian and
+    celestial conformal field theories, and related questions. That background
+    still shapes my working style far more than any single tool does.
+  - >
+    Physics taught me to take ideas apart slowly, to care about definitions, to
+    be suspicious of claims that sound complete too quickly, and to treat
+    failure modes as part of understanding rather than as an inconvenience.
+    That mindset carries directly into how I build and evaluate AI systems.
+  - >
+    I remain interested in active AI research, especially where reasoning
+    systems meet scientific or mathematical problems. From time to time I still
+    work on research questions, and I want this site to leave room for both the
+    engineer I am now and the researcher I still feel connected to.
+
+experience_intro: >
+  A compact timeline of roles across production AI systems, model evaluation,
+  and theoretical physics research.
+
+experience_timeline:
+  - title: "Development Engineer (Client: Target India)"
+    org: eTeam India
+    location: Bengaluru, India
+    period: April 2026 - Present
+    summary: >
+      Building retail automation systems and comparing production architectures
+      on accuracy, cost, and operational fit.
+    bullets:
+      - >
+        Built skills-based retail automation workflows using Google ADK-style
+        architecture for merchandising and planogram generation.
+      - >
+        Developed evaluation, testing, and observability workflows to verify
+        constraints and make architecture tradeoffs easier to measure.
+  - title: Research Associate
+    org: National Institute of Science Education and Research (NISER)
+    location: Bhubaneswar, India
+    period: March 2024 - March 2026
+    summary: >
+      Worked on theoretical physics problems through numerical and symbolic
+      computation, resulting in publications, talks, and collaborative
+      research.
+    bullets:
+      - >
+        Built Python and Mathematica workflows for non-linear differential
+        equations and related theoretical physics calculations.
+      - >
+        Mentored students and presented research at conferences and seminar
+        series.
+  - title: Physics & AI Expert
+    org: FlowAI
+    location: Remote (India)
+    period: September 2025 - January 2026
+    summary: >
+      Supported AI work on symbolic mathematics and theoretical physics
+      reasoning problems.
+    bullets:
+      - >
+        Helped shape agent architecture choices for hard scientific
+        problem-solving workflows.
+      - >
+        Curated benchmark questions for evaluating LLM reasoning quality and
+        hallucination behavior on mathematical tasks.
+
+research_intro: >
+  My research background is in theoretical physics, but I am also interested in
+  active AI research, especially when it touches reasoning, scientific
+  workflows, and mathematically structured problems. This page holds the
+  academic side of that story.
+
+physics_research_summary: >
+  In physics, my work has focused on asymptotic symmetries, holography,
+  W-algebras, Carrollian and celestial conformal field theories, and nearby
+  questions around boundary limits and structure in gravity and field theory. I
+  still think of this body of work as a live part of my intellectual
+  background, not just a previous chapter.
+
+research_interests:
+  - Asymptotic symmetries of flat, AdS, and conformal gravity.
+  - W-algebras, Carrollian conformal field theories, and celestial CFTs.
+  - Near-boundary limits of string theory and twistor string theory on AdS.
+  - Automated reasoning and AI for theoretical physics and mathematical problems.
+
+academic_links:
+  - label: INSPIRE-HEP
+    url: https://inspirehep.net/authors/2148050?ui-citation-summary=true
 
 theoretical_physics_publications:
   citation_summary_url: https://inspirehep.net/authors/2148050?ui-citation-summary=true
   items:
+    - authors:
+        - S. Banerjee
+        - N. Gupta
+        - S. Misra
+      title: "Worldsheet CFT<sub>2</sub> and Celestial CFT<sub>2</sub>: An AdS<sub>3</sub>-CFT<sub>2</sub> Perspective"
+      venue: "arXiv:2506.14891 [hep-th]"
+      url: https://doi.org/10.48550/arXiv.2506.14891
     - authors:
         - N. Gupta
         - N. V. Suryanarayana
@@ -45,15 +160,15 @@ theoretical_physics_publications:
     - authors:
         - N. Gupta
         - N. V. Suryanarayana
-      title: "All Chiral W-algebra Extensions of so(2,3)"
-      venue: "J. High Energ. Phys. 2024, 137"
-      url: https://doi.org/10.1007/JHEP08(2024)137
-    - authors:
-        - N. Gupta
-        - N. V. Suryanarayana
       title: "A Chiral &Lambda;-bms<sub>4</sub> Symmetry of AdS<sub>4</sub> Gravity"
       venue: "Nucl. Phys. B 1010 (2025) 116759"
       url: https://doi.org/10.1016/j.nuclphysb.2024.116759
+    - authors:
+        - N. Gupta
+        - N. V. Suryanarayana
+      title: "All Chiral W-algebra Extensions of so(2,3)"
+      venue: "J. High Energ. Phys. 2024, 137"
+      url: https://doi.org/10.1007/JHEP08(2024)137
     - authors:
         - N. Gupta
         - P. Paul
@@ -67,20 +182,38 @@ theoretical_physics_publications:
       title: "Constructing Carrollian CFTs"
       venue: "J. High Energ. Phys. 2021, 194"
       url: https://doi.org/10.1007/JHEP03(2021)194
-    - authors:
-        - S. Banerjee
-        - N. Gupta
-        - S. Misra
-      title: "Worldsheet CFT<sub>2</sub> and Celestial CFT<sub>2</sub>: An AdS<sub>3</sub>-CFT<sub>2</sub> Perspective"
-      venue: "arXiv:2506.14891 [hep-th]"
-      url: https://doi.org/10.48550/arXiv.2506.14891
+
+upcoming_preprints:
+  - title: Deriving Celestial CFT using 3d conformal gravity
+
+selected_talks:
+  - title: "Towards Engineering Celestial CFTs - An AdS-CFT perspective"
+    venue: Indian Strings Meeting 2025, IIT and NISER Bhubaneswar
+    period: December 2025
+  - title: "Worldsheet CFT2 and Celestial CFT2: An AdS3/CFT2 perspective"
+    venue: Seminar, CCPP, New York University
+    period: August 2025
+  - title: "Worldsheet CFT2 and Celestial CFT2: An AdS3/CFT2 perspective"
+    venue: Special Leinweber Seminar, KCTP, University of Chicago
+    period: August 2025
+  - title: Chiral W-algebra from 3d conformal gravity
+    venue: Indian Strings Meeting, IIT Bombay
+    period: December 2023
+  - title: All chiral W-algebra extensions of so(2,3)
+    venue: Indian Institute of Science, Bangalore
+    period: October 2023
+
+projects_intro: >
+  A small set of engineering projects in retrieval, agent workflows, and
+  research-adjacent tooling.
 
 projects:
   - title: Autonomous Multi-Agent Data Analysis System
-    label: Multi-agent analytics
+    label: Agent workflows
     description: >
-      LangGraph-based workflow for exploratory data analysis, model building,
-      report generation, and automated quality review.
+      Built a multi-agent system for autonomous data analysis, combining
+      statistical EDA, ML modeling, LLM-based explanation, and automated
+      quality evaluation in one workflow.
     stack:
       - LangGraph
       - Python
@@ -88,10 +221,11 @@ projects:
     url: https://github.com/nisg-phys/Autonomous-Data-Analysis-Agents
     cta: View project
   - title: Production RAG System for Python Documentation
-    label: Retrieval systems
+    label: Production retrieval
     description: >
-      Production-oriented RAG stack for developer support using FastAPI,
-      Pinecone, embeddings, BM25 retrieval, and hosted LLM inference.
+      Built a production-grade RAG application with hybrid retrieval, query
+      rewriting, grounded answer generation, and evaluation for both retrieval
+      relevance and answer quality.
     stack:
       - FastAPI
       - Pinecone
@@ -101,11 +235,9 @@ projects:
   - title: Langchain-community-inspire-hep (PyPI)
     label: Open-source package
     description: >
-      Open-source Python package integrating INSPIRE-HEP with LangChain,
-      enabling LLM applications and AI agents to search and retrieve
-      high-energy physics literature. Built with typed interfaces, Pydantic
-      validation, comprehensive error handling, and a 20-test unit and
-      integration suite; published on PyPI.
+      Built and maintain a Python package that connects INSPIRE-HEP with
+      LangChain so AI applications can search and retrieve high-energy physics
+      literature through typed interfaces and tested tooling.
     stack:
       - LangChain
       - Pydantic
@@ -116,51 +248,10 @@ projects:
       - label: GitHub
         url: https://github.com/nisg-phys/langchain-community-inspire-hep
 
-experience:
-  - title: Development Engineer
-    org: Target India
-    period: 2026 - Present
-    summary: >
-      Building LangGraph-based workflows for retail automation and translating
-      merchandising constraints into production AI systems.
-  - title: Research Associate
-    org: NISER
-    period: 2024 - Present
-    summary: >
-      Developing numerical and symbolic computation frameworks for theoretical
-      physics research, with an emphasis on rigorous and reproducible analysis.
-  - title: Physics and AI Expert
-    org: FlowAI
-    period: 2025 - 2026
-    summary: >
-      Contributed to scientific reasoning benchmarks and evaluation workflows
-      for language models on mathematical and symbolic tasks.
+contact_intro: >
+  If you would like to talk about AI systems, research, or something at the
+  boundary between the two, this is the easiest place to reach me.
 
-education:
-  - degree: Ph.D. in Theoretical Physics
-    school: The Institute of Mathematical Sciences
-  - degree: M.Sc. in Physics
-    school: Indian Institute of Technology Madras
-
-skill_groups:
-  - title: LLM Systems
-    items:
-      - LangGraph
-      - LangChain
-      - Agentic AI
-      - RAG
-      - Evaluation pipelines
-  - title: Engineering
-    items:
-      - Python
-      - FastAPI
-      - Pydantic
-      - Databricks
-      - AWS S3
-  - title: ML and Research
-    items:
-      - PyTorch
-      - TensorFlow
-      - Scientific computing
-      - Symbolic workflows
-      - Numerical methods
+learning_intro: >
+  Occasional notes from things I am studying or trying to understand more
+  clearly.

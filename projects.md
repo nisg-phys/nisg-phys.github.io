@@ -4,7 +4,7 @@ permalink: /projects/
 classes: wide
 ---
 
-Selected work in multi-agent systems, retrieval, and scientific AI tooling.
+{{ site.data.profile.projects_intro }}
 
 <div class="card-grid">
 {% for project in site.data.profile.projects %}

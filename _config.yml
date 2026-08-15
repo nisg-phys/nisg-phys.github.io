@@ -1,19 +1,19 @@
-title: Nishant Gupta
-description: AI researcher and engineer focused on agentic systems, evaluation pipelines, and scientific machine intelligence.
+title: ""
+description: AI engineering, theoretical physics, and research-oriented work.
 locale: en-US
 url: "https://nisg-phys.github.io"
 baseurl: ""
 remote_theme: "mmistakes/minimal-mistakes@4.28.0"
 minimal_mistakes_skin: "default"
-masthead_title: "Nishant Gupta"
+masthead_title: ""
 
 plugins:
   - jekyll-feed
   - jekyll-include-cache
 
 author:
-  name: "Nishant Gupta, Ph.D."
-  bio: "AI engineer focused on retrieval, evaluation, and agent workflows."
+  name: ""
+  bio: "AI engineer with a background in theoretical physics and an ongoing interest in research-driven AI work."
   location: "Bengaluru, India"
   links:
     - label: "GitHub"
