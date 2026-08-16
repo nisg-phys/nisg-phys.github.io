@@ -1,0 +1,50 @@
+Nishant Gupta
+Curriculum vitae
+Contact Information
+E-mail: nishantgupta.phy@gmail.com
+LinkedIn: https://linkedin.com/in/nishantg93
+GitHub: https://github.com/nisg-phys
+
+Education
+Ph.D. in Theoretical Physics.                                                                                                 2018-2024
+The Institute of Mathematical Sciences (IMSc), Chennai
+Thesis Advisor: Prof. N. V. Suryanarayana
+
+Experience
+Development Engineer (Client: Target India)                                                                    April 2026 - Present
+eTeam India, Bengaluru, India
+Built skills-based retail automation workflows using Google ADK-style architecture for merchandising and planogram generation.
+Developed evaluation, testing, and observability workflows to verify constraints and make architecture tradeoffs easier to measure.
+
+Research Associate                                                                                              March 2024 - March 2026
+National Institute of Science Education and Research (NISER), Bhubaneswar, India
+Built Python and Mathematica workflows for non-linear differential equations and related theoretical physics calculations.
+Mentored students and presented research at conferences and seminar series.
+
+Physics & AI Expert                                                                                       September 2025 - January 2026
+FlowAI, Remote (India)
+Helped shape agent architecture choices for hard scientific problem-solving workflows.
+Curated benchmark questions for evaluating LLM reasoning quality and hallucination behavior on mathematical tasks.
+
+Publications
+Gupta N., Suryanarayana N.V. (2021) Constructing Carrollian CFTs. J. High Energ. Phys. 2021, 194.
+Gupta N., Paul P., Suryanarayana N.V. (2023) sl-hat_2 Symmetry of R^{1,3} Gravity. Phys. Rev. D 108, 086029.
+Gupta N., Suryanarayana N.V. (2024) All Chiral W-algebra Extensions of so(2,3). J. High Energ. Phys. 2024, 137.
+Gupta N., Suryanarayana N.V. (2025) A Chiral Lambda-bms_4 Symmetry of AdS_4 Gravity. Nucl. Phys. B 1010, 116759.
+Gupta N., Suryanarayana N.V. (2025) Chiral Lambda-bms_4 Symmetry of 3D Conformal Gravity. Eur. Phys. J. C 85, 468.
+Banerjee S., Gupta N., Misra S. (2025) Worldsheet CFT2 and Celestial CFT2: An AdS3-CFT2 Perspective. arXiv:2506.14891 [hep-th].
+
+Preprint/Upcoming
+Deriving Celestial CFT using 3d conformal gravity.
+
+Talks and Presentations
+Talk, Towards Engineering Celestial CFTs - An AdS-CFT perspective, Indian Strings Meeting 2025, IIT and NISER Bhubaneswar, December 2025
+Seminar, Worldsheet CFT2 and Celestial CFT2: An AdS3/CFT2 perspective, CCPP, New York University, August 2025
+Seminar, Worldsheet CFT2 and Celestial CFT2: An AdS3/CFT2 perspective, Special Leinweber Seminar, KCTP, University of Chicago, August 2025
+Talk, Chiral W-algebra from 3d conformal gravity, Indian Strings Meeting, IIT Bombay, December 2023
+Talk, All chiral W-algebra extensions of so(2,3), Indian Institute of Science, Bangalore, October 2023
+
+Projects
+Autonomous Multi-Agent Data Analysis System - LangGraph, Python, LLM evaluation. https://github.com/nisg-phys/Autonomous-Data-Analysis-Agents
+Production RAG System for Python Documentation - FastAPI, Pinecone, BM25. https://github.com/nisg-phys/RAG-for-Python3.14
+langchain-community-inspire-hep (PyPI) - LangChain, Pydantic, Python packaging. https://pypi.org/project/langchain-community-inspire-hep/
