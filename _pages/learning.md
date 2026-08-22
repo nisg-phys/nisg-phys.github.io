@@ -14,3 +14,7 @@ Occasional notes from things I am studying or trying to understand more clearly.
 
 - [Read the note](/learning/jax-tutorial-summary/)
 - [View the repository](https://github.com/nisg-phys/Jax_tutorial)
+
+**Adam from Scratch (Stage 1.5)** — Implementing the Adam optimizer directly from its mathematical definition in pure JAX, no Optax.
+
+- [Read the note](/learning/adam-from-scratch-jax/)
