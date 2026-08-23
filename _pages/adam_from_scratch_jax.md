@@ -8,7 +8,7 @@ Stage 1.5 of a "from-scratch" JAX project: after building a small MLP and traini
 
 ## 1. What Adam Is Solving
 
-Given parameters \(\theta\) and loss \(L(\theta)\), autodiff gives the gradient \(g_t = \nabla_\theta L(\theta_t)\). Plain gradient descent applies a single learning rate \(\eta\) to every parameter:
+Given parameters \(\theta\) and loss \(L(\theta)\), autodiff gives the gradient \(g*t = \nabla*\theta L(\theta_t)\). Plain gradient descent applies a single learning rate \(\eta\) to every parameter:
 
 $$
 \theta_{t+1} = \theta_t - \eta\, g_t.
@@ -16,8 +16,8 @@ $$
 
 That is inefficient when different parameters see very different gradient scales, gradients oscillate, or curvature varies a lot across directions. Adam keeps two moving averages per parameter:
 
-- **First moment** \(m_t = \beta_1 m_{t-1} + (1-\beta_1) g_t\) — behaves like momentum, tracking the recent gradient direction.
-- **Second raw moment** \(v_t = \beta_2 v_{t-1} + (1-\beta_2) g_t^2\) — tracks the recent scale of the gradient.
+- **First moment** \(m*t = \beta_1 m*{t-1} + (1-\beta_1) g_t\) — behaves like momentum, tracking the recent gradient direction.
+- **Second raw moment** \(v*t = \beta_2 v*{t-1} + (1-\beta_2) g_t^2\) — tracks the recent scale of the gradient.
 
 The update direction comes from \(m_t\); the step size is normalized by \(v_t\).
 
@@ -47,18 +47,18 @@ $$
 \theta_{t+1} = \theta_t - \eta\, \frac{\hat m_t}{\sqrt{\hat v_t} + \epsilon}
 $$
 
-| Hyperparameter | Typical value | Role |
-|---|---:|---|
-| \(\eta\) | `1e-3` | Learning rate |
-| \(\beta_1\) | `0.9` | First-moment decay |
-| \(\beta_2\) | `0.999` | Second-moment decay |
-| \(\epsilon\) | `1e-8` | Numerical stability |
+| Hyperparameter | Typical value | Role                |
+| -------------- | ------------: | ------------------- |
+| \(\eta\)       |        `1e-3` | Learning rate       |
+| \(\beta_1\)    |         `0.9` | First-moment decay  |
+| \(\beta_2\)    |       `0.999` | Second-moment decay |
+| \(\epsilon\)   |        `1e-8` | Numerical stability |
 
 Adam produces a parameter-wise adaptive step size: a parameter with a historically large gradient scale gets a smaller normalized step.
 
 ## 4. Optimizer State
 
-The key implementation difference from SGD is that **Adam is stateful**. SGD only needs current parameters and current gradients: \((\theta_t, g_t) \to \theta_{t+1}\). Adam carries state forward:
+The key implementation difference from SGD is that **Adam is stateful**. SGD only needs current parameters and current gradients: \((\theta*t, g_t) \to \theta*{t+1}\). Adam carries state forward:
 
 $$
 (\theta_t, g_t, m_{t-1}, v_{t-1}, t) \;\to\; (\theta_{t+1}, m_t, v_t, t+1).
@@ -97,7 +97,7 @@ def update_first_moment(m, grads, beta1):
     ]
 ```
 
-**Second moment** — exponential moving average of the *squared* gradient:
+**Second moment** — exponential moving average of the _squared_ gradient:
 
 ```python
 def update_second_moment(v, grads, beta2):
@@ -181,12 +181,12 @@ On the toy regression problem \(y = x^2\) (a 1→32→1 MLP with tanh), training
 The bias-correction factors show why the correction is needed early on and fades out later. With \(\beta_1 = 0.9\), \(\beta_2 = 0.999\):
 
 | step | \(1-\beta_1^t\) | \(1-\beta_2^t\) |
-|---:|---:|---:|
-| 1 | 0.100000 | 0.001000 |
-| 2 | 0.190000 | 0.001999 |
-| 5 | 0.409510 | 0.004990 |
-| 10 | 0.651322 | 0.009955 |
-| 100 | 0.999973 | 0.095208 |
+| ---: | --------------: | --------------: |
+|    1 |        0.100000 |        0.001000 |
+|    2 |        0.190000 |        0.001999 |
+|    5 |        0.409510 |        0.004990 |
+|   10 |        0.651322 |        0.009955 |
+|  100 |        0.999973 |        0.095208 |
 
 At step 1 without correction, \(m_1\) is only 10% of \(g_1\); dividing by \(1-\beta_1^1 = 0.1\) recovers \(\hat m_1 = g_1\) exactly, which is the right value at the very first step. The second-moment correction factor converges far more slowly (\(\beta_2\) is closer to 1), which is why \(\epsilon\) in the denominator also matters — without it, a small or zero \(\hat v_t\) could blow up the step.
 
