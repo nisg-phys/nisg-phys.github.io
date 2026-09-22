@@ -18,3 +18,7 @@ Occasional notes from things I am studying or trying to understand more clearly.
 **Adam from Scratch (Stage 1.5)** — Implementing the Adam optimizer directly from its mathematical definition in pure JAX, no Optax.
 
 - [Read the note](/learning/adam-from-scratch-jax/)
+
+**Pytrees Primer** — Why JAX treats any nested dict/list/tuple of arrays as a single differentiable object, and the handful of functions (`tree_leaves`, `tree_map`) you need to work with one.
+
+- [Read the note](/learning/jax-pytrees-primer/)
