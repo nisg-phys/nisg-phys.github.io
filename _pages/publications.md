@@ -6,7 +6,6 @@ nav: true
 nav_order: 4
 ---
 
-
 Publication records and citation details are also available through my [INSPIRE-HEP profile](https://inspirehep.net/authors/2148050?ui-citation-summary=true).
 
 1. **S. Banerjee, N. Gupta, S. Misra**
@@ -26,4 +25,3 @@ Publication records and citation details are also available through my [INSPIRE-
 
 6. **N. Gupta, N. V. Suryanarayana**
    _Constructing Carrollian CFTs._ [J. High Energ. Phys. 2021, 194](<https://doi.org/10.1007/JHEP03(2021)194>).
-

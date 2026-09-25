@@ -22,11 +22,11 @@ National Institute of Science Education and Research (NISER), Bhubaneswar
 ## Education
 
 - **Ph.D. in Theoretical Physics** (2018–2024)  
-  The Institute of Mathematical Sciences (IMSc), Chennai  
+  The Institute of Mathematical Sciences (IMSc), Chennai
 
-- **M.Sc. in Physics** 
-(2015–2017)  
-  Indian Institute of Technology Madras 
+- **M.Sc. in Physics**
+  (2015–2017)  
+   Indian Institute of Technology Madras
 
 ## Background
 
