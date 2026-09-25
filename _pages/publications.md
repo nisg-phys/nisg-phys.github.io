@@ -6,12 +6,11 @@ nav: true
 nav_order: 4
 ---
 
-## Selected Publications
 
 Publication records and citation details are also available through my [INSPIRE-HEP profile](https://inspirehep.net/authors/2148050?ui-citation-summary=true).
 
 1. **S. Banerjee, N. Gupta, S. Misra**
-   _Worldsheet CFT<sub>2</sub> and Celestial CFT<sub>2</sub>: An AdS<sub>3</sub>-CFT<sub>2</sub> Perspective._ [arXiv:2506.14891 [hep-th]](https://doi.org/10.48550/arXiv.2506.14891) (2025).
+   _Worldsheet CFT<sub>2</sub> and Celestial CFT<sub>2</sub>: An AdS<sub>3</sub>-CFT<sub>2</sub> Perspective._ [Phys. Rev. D 114, 046001](https://journals.aps.org/prd/abstract/10.1103/hxq4-172y).
 
 2. **N. Gupta, N. V. Suryanarayana**
    _Chiral Λ-bms<sub>4</sub> Symmetry of 3D Conformal Gravity._ [Eur. Phys. J. C 85 (2025) 4, 468](https://doi.org/10.1140/epjc/s10052-025-14162-5).
@@ -28,8 +27,3 @@ Publication records and citation details are also available through my [INSPIRE-
 6. **N. Gupta, N. V. Suryanarayana**
    _Constructing Carrollian CFTs._ [J. High Energ. Phys. 2021, 194](<https://doi.org/10.1007/JHEP03(2021)194>).
 
-## Upcoming Preprint
-
-- Deriving Celestial CFT using 3d conformal gravity
-
-For the full publication list and CV, see the [CV](/cv/) page.

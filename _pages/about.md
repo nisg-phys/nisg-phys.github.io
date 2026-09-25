@@ -23,7 +23,10 @@ National Institute of Science Education and Research (NISER), Bhubaneswar
 
 - **Ph.D. in Theoretical Physics** (2018–2024)  
   The Institute of Mathematical Sciences (IMSc), Chennai  
-  Thesis Advisor: Prof. N. V. Suryanarayana
+
+- **M.Sc. in Physics** 
+(2015–2017)  
+  Indian Institute of Technology Madras 
 
 ## Background
 
