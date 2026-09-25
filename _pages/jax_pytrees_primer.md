@@ -36,7 +36,7 @@ leaves = jax.tree_util.tree_leaves(params)
 # [shape (3, 2), shape (2,), shape (2, 1), shape (1,)]
 ```
 
-**`jax.tree_util.tree_map`** applies a function to every leaf and rebuilds the *same* nested structure around the results. This is the single most-used pytree function in practice:
+**`jax.tree_util.tree_map`** applies a function to every leaf and rebuilds the _same_ nested structure around the results. This is the single most-used pytree function in practice:
 
 ```python
 doubled = jax.tree_util.tree_map(lambda x: 2.0 * x, params)
@@ -51,7 +51,7 @@ summed = jax.tree_util.tree_map(lambda a, b: a + b, params, doubled)
 
 ## 2. `jax.grad` works out of the box on pytree inputs
 
-This is the "aha" moment: you never flatten `params` yourself to differentiate through it. `grad(loss)(params)` returns a pytree with the *exact same nested structure* as `params`, where each leaf is the derivative of the loss with respect to that leaf.
+This is the "aha" moment: you never flatten `params` yourself to differentiate through it. `grad(loss)(params)` returns a pytree with the _exact same nested structure_ as `params`, where each leaf is the derivative of the loss with respect to that leaf.
 
 ```python
 def predict(params, x):
@@ -89,7 +89,7 @@ fast_loss = jax.jit(loss_fn)
 fast_loss(params, x, y)   # works directly on the params pytree
 ```
 
-`vmap` can even map over a *batch of parameter pytrees* (not something you'd need day to day, but proof it doesn't care about tree structure either). `in_axes=(0, None, None)` means "map over axis 0 of the first pytree argument, broadcast the other two":
+`vmap` can even map over a _batch of parameter pytrees_ (not something you'd need day to day, but proof it doesn't care about tree structure either). `in_axes=(0, None, None)` means "map over axis 0 of the first pytree argument, broadcast the other two":
 
 ```python
 batched_params = jax.tree_util.tree_map(lambda p: jnp.stack([p, p]), params)
@@ -103,4 +103,3 @@ batched_loss = jax.vmap(loss_fn, in_axes=(0, None, None))(batched_params, x, y)
 3. **`tree_map`**: Applies a function to every leaf (over one or more pytrees with matching structure) and rebuilds the same structure — this is the workhorse for parameter updates.
 4. **`grad`**: Differentiates through a pytree input directly, returning a gradient pytree with the same structure — no manual flattening required.
 5. **`jit` / `vmap`**: Both operate on pytrees transparently, so nothing about jit-compiling or batching changes as a model's parameter structure grows.
-
