@@ -1,28 +1,13 @@
 ---
-layout: page
-title: "About"
-permalink: /about/
-nav: true
-nav_order: 1
----
+layout: about
+title: About
+permalink: /
+subtitle: AI engineer at eTeam India, working with Target. PhD in theoretical physics.
 
-I'm Nishant Gupta, a Development Engineer with a PhD in Theoretical Physics.
-
-## Current Position
-
-**Development Engineer** (Client: Target India) (April 2026–Present)  
-eTeam India  
-Bengaluru, India
-
-## Previous Position
-
-**Postdoctoral Research Associate** (2024–2026)  
-National Institute of Science Education and Research (NISER), Bhubaneswar
-
-## Education
-
-- **Ph.D. in Theoretical Physics** (2018–2024)  
-  The Institute of Mathematical Sciences (IMSc), Chennai
+announcements:
+  enabled: true
+  scrollable: false
+  limit: 5
 
 - **M.Sc. in Physics** (2015–2017)  
   Indian Institute of Technology Madras
@@ -37,17 +22,13 @@ Physics taught me to take ideas apart slowly, to care about definitions, to be s
 
 I remain interested in active AI research, especially where reasoning systems meet scientific or mathematical problems. From time to time I still work on research questions, and this site leaves room for both the engineer I am now and the researcher I still feel connected to.
 
-## Highlights
+I build multi-agent systems for Target India, where I work through eTeam India. Most of my time goes into a Google ADK system that generates store planograms. My part is turning category managers' notes into a spec the agents can follow, checking what the agents produce against it, and keeping the context small enough that the system still behaves on shelves with a thousand-plus items.
 
-- Built skills-based retail automation workflows using Google ADK-style architecture for merchandising and planogram generation
-- Developed evaluation, testing, and observability workflows to verify constraints and make architecture tradeoffs easier to measure
-- Published research on chiral W-algebra extensions, Carrollian CFTs, and celestial holography in AdS/CFT
-- Built and maintain an open-source Python package connecting INSPIRE-HEP with LangChain
+Before this I was a theoretical physicist. I did my PhD at IMSc Chennai and then spent two years as a research associate at NISER, working on asymptotic symmetries, celestial holography and Carrollian CFTs. Physics taught me to pull ideas apart slowly, to care about definitions, and to distrust any explanation that feels finished too early. I still work that way, and I still pick up a research problem now and then.
 
-## Contact
+## Things I've built
 
-- Email: <a href="mailto:nishantgupta.phy@gmail.com">nishantgupta.phy@gmail.com</a>
-- LinkedIn: <a href="https://linkedin.com/in/nishantg93" target="_blank" rel="noopener">linkedin.com/in/nishantg93</a>
-- GitHub: <a href="https://github.com/nisg-phys" target="_blank" rel="noopener">github.com/nisg-phys</a>
+- **[Pulsar](https://pulsar-jobs-agent.web.app)**: search physics job postings in plain English. It pulls jobs from INSPIRE-HEP, asks a follow-up question when a query is too vague, and searches the web when INSPIRE has nothing. ([code](https://github.com/nisg-phys/INSPIRE-JOB-AGENT))
+- **[RAG for Python 3.14](https://ragbot-python.web.app)**: ask questions about the Python docs. It combines vector search with keyword search so exact function names still match. ([code](https://github.com/nisg-phys/RAG-for-Python3.14))
 
-[CV](/cv/) | [Research](/research/) | [Publications](/publications/)
+More on the [projects](/projects/) page. My papers are on [publications](/publications/), and the full history is in my [CV](/cv/).

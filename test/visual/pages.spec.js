@@ -2,7 +2,6 @@ const { test, expect } = require("@playwright/test");
 
 const pages = [
   { path: "/", id: "home" },
-  { path: "/about/", id: "about" },
   { path: "/projects/", id: "projects" },
   { path: "/learning/", id: "learning" },
   { path: "/research/", id: "research" },
