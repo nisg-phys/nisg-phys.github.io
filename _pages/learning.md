@@ -22,3 +22,7 @@ Occasional notes from things I am studying or trying to understand more clearly.
 **Pytrees Primer** — Why JAX treats any nested dict/list/tuple of arrays as a single differentiable object, and the handful of functions (`tree_leaves`, `tree_map`) you need to work with one.
 
 - [Read the note](/learning/jax-pytrees-primer/)
+
+**A Linear Layer: Thinking in Shapes** — The `y = xW + b` building block behind every Transformer weight matrix, with worked examples of how `@` handles vectors, batches and sequences, how the bias broadcasts, and why gradients come out the same shape as the parameters.
+
+- [Read the note](/learning/jax-linear-layer/)

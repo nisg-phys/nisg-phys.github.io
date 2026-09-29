@@ -35,4 +35,4 @@ In physics, my work has focused on asymptotic symmetries, holography, W-algebras
 - **Chiral W-algebra from 3d conformal gravity** — Indian Strings Meeting, IIT Bombay (December 2023)
 - **All chiral W-algebra extensions of so(2,3)** — Indian Institute of Science, Bangalore (October 2023)
 
-For the full publication list, see the [Publications](/publications/) page.
+For the full publication list, with a short plain-language summary of each paper, see the [Publications](/publications/) page.
