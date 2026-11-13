@@ -1,0 +1,194 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> PINNs Part 1: Why Physics Belongs in the Loss | Nishant Gupta </title> <meta name="author" content="Nishant Gupta"> <meta name="description" content="AI engineering, theoretical physics, and research-oriented work. Development Engineer working on retail AI systems, with a research background in asymptotic symmetries, holography, and celestial/Carrollian conformal field theories. "> <meta name="keywords" content="nishant gupta, ai engineer, theoretical physics, celestial holography, carrollian cft, w-algebras, asymptotic symmetries, machine learning, academic website"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?v=3116ba77db9ee1581d05bb3e86fbf7f1"> <link rel="canonical" href="https://nisg-phys.github.io/learning/pinns-part1-foundations/"> <script src="/assets/js/theme.js?v=5286c3e4c334d0ecb8fc0c40ff4fa7ec"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> Nishant Gupta </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">About </a> </li> <li class="nav-item "> <a class="nav-link" href="/research/">Research </a> </li> <li class="nav-item "> <a class="nav-link" href="/projects/">Projects </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">Publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item active"> <a class="nav-link" href="/learning/">Learning <span class="sr-only">(current)</span> </a> </li> <li class="nav-item "> <a class="nav-link" href="/contact/">Contact </a> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">PINNs Part 1: Why Physics Belongs in the Loss</h1> <p class="post-description"></p> </header> <article> <p>Notes from Part 1 of a series on Physics-Informed Neural Networks (PINNs) in JAX. A PINN is a neural network \(u_\theta(x)\) trained so that a differential equation holds. This part builds the pieces from scratch (a small network, the Adam optimiser, derivatives of the network with respect to its input) and ends with the question that motivates the whole series: if a network can fit the data perfectly, why do we need physics at all?</p> <p>The first half answers that. The second half covers two JAX ideas that kept confusing me, forward versus reverse mode and <code class="language-plaintext highlighter-rouge">jit</code>, because a PINN leans on both.</p> <h2 id="1-the-problem-a-network-that-fits-the-data-and-still-fails">1. The problem: a network that fits the data and still fails</h2> <p>The target is a function we know exactly:</p> \[y(x) = \sin x + 0.1\,x^2, \qquad x \in [-5, 5]\] <p>It is sampled at 200 noise-free points. The first 160 (up to \(x \approx 3\)) are for training and the last 40 are for testing. Since \(x\) is sorted, the split is spatial. The test set asks the network to <strong>extrapolate</strong>, not to interpolate between points it has seen.</p> <p>A small <code class="language-plaintext highlighter-rouge">tanh</code> network trained with Adam gives:</p> <table> <thead> <tr> <th> </th> <th>Error (MSE)</th> </tr> </thead> <tbody> <tr> <td>Train region (<code class="language-plaintext highlighter-rouge">x &lt; 3</code>)</td> <td>about <code class="language-plaintext highlighter-rouge">1e-5</code> (excellent)</td> </tr> <tr> <td>Test region (<code class="language-plaintext highlighter-rouge">x &gt; 3</code>)</td> <td>about <code class="language-plaintext highlighter-rouge">1</code> (wrong)</td> </tr> </tbody> </table> <p>That is a gap of about five orders of magnitude. The fit is excellent where there are data and wrong where there are none.</p> <h3 id="why-it-fails">Why it fails</h3> <p>The loss only looks at the training points. Beyond <code class="language-plaintext highlighter-rouge">x = 3</code> nothing constrains the network, so it continues in whatever direction its <code class="language-plaintext highlighter-rouge">tanh</code> units happen to take it. This is not overfitting in the usual sense. The network was never asked to be right there.</p> <p>More neurons, more steps and a better optimiser do not fix it. All of them fit the same 160 points better, and none adds information about <code class="language-plaintext highlighter-rouge">x &gt; 3</code>.</p> <h2 id="2-isnt-extrapolation-what-regression-is-for">2. “Isn’t extrapolation what regression is for?”</h2> <p>The data came from a known equation, so it is tempting to expect any model to pick that up. It does not work that way. I trained several models on the same data (train on <code class="language-plaintext highlighter-rouge">x &lt; 3</code>, test on <code class="language-plaintext highlighter-rouge">x &gt; 3</code>):</p> <table> <thead> <tr> <th>Model</th> <th>What it assumes</th> <th>Train MSE</th> <th>Test MSE</th> </tr> </thead> <tbody> <tr> <td>Straight line <code class="language-plaintext highlighter-rouge">[1, x]</code> </td> <td>the answer is a line</td> <td>1.2</td> <td>1.0</td> </tr> <tr> <td>Right form <code class="language-plaintext highlighter-rouge">[1, x, x², sin x]</code> </td> <td>the exact ingredients</td> <td>~1e-30</td> <td>~1e-29</td> </tr> <tr> <td>Degree-9 polynomial</td> <td>any smooth curve</td> <td>5e-8</td> <td>0.29</td> </tr> <tr> <td>Neural network</td> <td>nothing in particular</td> <td>~2e-5</td> <td>~1</td> </tr> </tbody> </table> <ul> <li> <strong>The line fails everywhere.</strong> The true function is not a line, so even the training fit is poor.</li> <li> <strong>The right form extrapolates perfectly</strong>, because it was handed the true ingredients. Regression does not extrapolate well in general. It extrapolates well when the form it assumes is correct.</li> <li> <strong>The polynomial and the network fit the training data and then drift off outside it.</strong> They are flexible and know nothing about the true shape. 160 points are consistent with infinitely many functions. These agree on the data and disagree everywhere else, and the model picks one more or less arbitrarily.</li> </ul> <p>The functional dependence existed in how the data were generated. It was never part of what the model was trained on.</p> <h3 id="the-trade-off">The trade-off</h3> <table> <thead> <tr> <th>Model</th> <th>Knows the form?</th> <th>Flexible?</th> <th>Outside the data</th> </tr> </thead> <tbody> <tr> <td>Regression with the right form</td> <td>yes</td> <td>no</td> <td>great, if you guessed the form right</td> </tr> <tr> <td>Regression with the wrong form</td> <td>no</td> <td>no</td> <td>wrong everywhere</td> </tr> <tr> <td>Neural network / high-degree polynomial</td> <td>no</td> <td>yes</td> <td>fits the data, unreliable outside it</td> </tr> </tbody> </table> <p>You can have the form without the flexibility, or the flexibility without the form. A PINN aims to get both.</p> <h2 id="3-giving-the-model-the-missing-knowledge">3. Giving the model the missing knowledge</h2> <p>There are three ways to supply what the data do not:</p> <ol> <li> <strong>Choose the form yourself.</strong> This works only if you already know the ingredients, which is often not possible.</li> <li> <strong>Collect more data</strong> where you need predictions. This is often expensive or impossible.</li> <li> <strong>Give the model the equation.</strong> This is the PINN.</li> </ol> <p>A PINN adds the equation to the loss:</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>loss = data error  +  (how badly the equation is violated)^2
+</code></pre></div></div> <p>The second term is the <strong>residual</strong>. It needs <strong>no labels</strong>: it can be evaluated at any \(x\), including where there are no data, so it constrains the network exactly where the data run out.</p> <p>Here the target satisfies \(y'' + y = 0.2 + 0.1x^2\), so the residual of the network is</p> \[r_\theta(x) = u_\theta''(x) + u_\theta(x) - \left(0.2 + 0.1\,x^2\right)\] <p>and \(r_\theta = 0\) everywhere exactly when \(u_\theta\) solves the equation. Adding the mean of \(r_\theta^2\) over points spread across \([-5, 5]\), with the data loss unchanged, took the test MSE from about <code class="language-plaintext highlighter-rouge">1</code> to the order of <code class="language-plaintext highlighter-rouge">1e-5</code> in my run.</p> <p>A differential equation, together with a few conditions, pins down the solution. It removes the “infinitely many functions fit the data” problem, because only functions that satisfy the equation survive. The network stays flexible but is steered towards the ones that obey the physics.</p> <h3 id="the-same-lesson-applies-to-derivatives">The same lesson applies to derivatives</h3> <p>Fitting \(u\) does not mean \(u'\) and \(u''\) are right. The data loss controls values, not derivatives, so \(u''\) can be badly wrong even inside the training region (about 66% relative error in my run). Differentiating amplifies small wiggles in \(u\). The residual loss acts directly on \(u''\), so it controls the derivatives that the data loss ignores.</p> <p><strong>In one line:</strong> data tells the network what happens at the points you measured, and physics tells it what must be true everywhere else.</p> <h2 id="4-forward-mode-versus-reverse-mode">4. Forward mode versus reverse mode</h2> <p>A PINN differentiates in two different ways, so it matters which autodiff mode does which job.</p> <p>For a function \(f:\mathbb{R}^n \to \mathbb{R}^m\), the Jacobian \(J\) has one row per output and one column per input. Autodiff never builds it in one go. Each pass gives one slice:</p> <table> <thead> <tr> <th> </th> <th>Forward (<code class="language-plaintext highlighter-rouge">jacfwd</code>)</th> <th>Reverse (<code class="language-plaintext highlighter-rouge">jacrev</code>, <code class="language-plaintext highlighter-rouge">grad</code>)</th> </tr> </thead> <tbody> <tr> <td>Idea</td> <td>nudge one <strong>input</strong>, push the change forward</td> <td>pick one <strong>output</strong>, push blame backward</td> </tr> <tr> <td>One pass gives</td> <td>one <strong>column</strong> of \(J\)</td> <td>one <strong>row</strong> of \(J\)</td> </tr> <tr> <td>Passes for full \(J\)</td> <td>\(n\) (number of inputs)</td> <td>\(m\) (number of outputs)</td> </tr> <tr> <td>Use when</td> <td>few inputs, many outputs</td> <td>many inputs, few outputs</td> </tr> <tr> <td>Cost</td> <td>cheap in memory</td> <td>must store forward intermediates</td> </tr> </tbody> </table> <h3 id="a-worked-example">A worked example</h3> <p>Take \(f(z_0, z_1) = (z_0^2,\; z_0 z_1,\; \sin z_1)\) at \(z = (2, 3)\). Its Jacobian is</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>J = [[ 4,  0   ],
+     [ 3,  2   ],
+     [ 0, -0.99]]
+</code></pre></div></div> <ul> <li> <strong>Forward</strong>, with the direction \(v = (1, 0)\) (“wiggle \(z_0\) by 1”): carry that wiggle through every operation and read off \((4, 3, 0)\). That is the first <strong>column</strong>. A second pass with \(v = (0, 1)\) gives the second column.</li> <li> <strong>Reverse</strong>, with the weighting \(w = (1, 0, 0)\) (“I only care about output 0”): run the function once and keep the intermediates, then send sensitivity backward to get \((4, 0)\). That is the first <strong>row</strong>. Rows two and three need two more passes.</li> </ul> <p><code class="language-plaintext highlighter-rouge">jax.jacfwd</code> and <code class="language-plaintext highlighter-rouge">jax.jacrev</code> return the same matrix, and the choice is purely about cost. (Entries that print as <code class="language-plaintext highlighter-rouge">-0.</code> and <code class="language-plaintext highlighter-rouge">0.</code> differ only in the sign of zero.)</p> <h3 id="why-grad-is-reverse-mode">Why <code class="language-plaintext highlighter-rouge">grad</code> is reverse mode</h3> <p>A loss is one number and a network has thousands of parameters, so the Jacobian is a single row. One backward pass gives the entire gradient. Forward mode would need one pass per parameter.</p> <h3 id="how-one-backward-pass-gets-every-gradient">How one backward pass gets every gradient</h3> <p>Take the loss \(L = \left(w_2 \tanh(w_1 x) - y\right)^2\) with \(x = 1\), \(y = 0.5\), \(w_1 = 0.5\), \(w_2 = 2\). The forward pass stores every intermediate value. The backward pass then computes, for each node \(v\), how much \(L\) changes when \(v\) changes, working from the loss back to the parameters:</p> <table> <thead> <tr> <th>Node</th> <th>Forward value</th> <th>Backward: \(\partial L / \partial \text{node}\)</th> </tr> </thead> <tbody> <tr> <td>\(L\)</td> <td>\(r^2 = 0.180\)</td> <td>\(1\)</td> </tr> <tr> <td>\(r\)</td> <td>\(p - y = 0.424\)</td> <td>\(2r = 0.848\)</td> </tr> <tr> <td>\(p\)</td> <td>\(w_2 h = 0.924\)</td> <td>\(0.848\)</td> </tr> <tr> <td>\(w_2\)</td> <td> </td> <td>\(0.848 \cdot h =\) <strong>0.392</strong> </td> </tr> <tr> <td>\(h\)</td> <td>\(\tanh a = 0.462\)</td> <td>\(0.848 \cdot w_2 = 1.697\)</td> </tr> <tr> <td>\(a\)</td> <td>\(w_1 x = 0.500\)</td> <td>\(1.697 \cdot (1 - h^2) = 1.335\)</td> </tr> <tr> <td>\(w_1\)</td> <td> </td> <td>\(1.335 \cdot x =\) <strong>1.335</strong> </td> </tr> </tbody> </table> <p>Both gradients, \((1.335,\ 0.392)\), came out of one sweep. Two things make that work:</p> <ol> <li>Everything downstream of a node is already summarised in one number by the time the sweep reaches it, so nothing is redone per parameter.</li> <li>Because \(L\) is a scalar, every one of those numbers is a single number, not a vector or a matrix.</li> </ol> <p>A backward pass costs roughly two to three times one forward pass, however many parameters there are. That is why this is how every neural network is trained. The price is memory, since the stored forward values are needed on the way back.</p> <h3 id="what-this-means-for-pinns">What this means for PINNs</h3> <ul> <li> <strong>Loss with respect to parameters:</strong> one output, thousands of inputs. Reverse mode (<code class="language-plaintext highlighter-rouge">grad</code>).</li> <li> <strong>Network output with respect to coordinates</strong> \((x, t, \dots)\): one output, a handful of inputs, but you need second derivatives. The standard recipe is forward-over-reverse, <code class="language-plaintext highlighter-rouge">jacfwd(grad(u))</code>, which is what <code class="language-plaintext highlighter-rouge">jax.hessian</code> does.</li> </ul> <p>With one input dimension the difference is negligible. For a PDE in several dimensions it is not.</p> <h2 id="5-jit-trace-once-reuse-afterwards">5. <code class="language-plaintext highlighter-rouge">jit</code>: trace once, reuse afterwards</h2> <p>On the first call, JAX does not run your Python with real numbers. It runs the function once with <strong>tracers</strong>, placeholders that know only a shape and a dtype, and records the math operations into a graph. XLA compiles that graph, and the result is cached under the input <strong>shapes and dtypes</strong>. Later calls with the same shapes run the compiled code and skip your Python entirely.</p> <p>Two consequences are easy to trip over.</p> <h3 id="a-new-shape-means-a-recompile">A new shape means a recompile</h3> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">f</span> <span class="o">=</span> <span class="n">jax</span><span class="p">.</span><span class="nf">jit</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">jnp</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="nf">f</span><span class="p">(</span><span class="n">jnp</span><span class="p">.</span><span class="nf">ones</span><span class="p">(</span><span class="mi">200</span><span class="p">))</span>   <span class="c1"># trace + compile  (slow)
+</span><span class="nf">f</span><span class="p">(</span><span class="n">jnp</span><span class="p">.</span><span class="nf">ones</span><span class="p">(</span><span class="mi">200</span><span class="p">))</span>   <span class="c1"># cached           (fast)
+</span><span class="nf">f</span><span class="p">(</span><span class="n">jnp</span><span class="p">.</span><span class="nf">ones</span><span class="p">(</span><span class="mi">201</span><span class="p">))</span>   <span class="c1"># new shape -&gt; trace + compile again
+</span></code></pre></div></div> <ul> <li>Different <strong>values</strong> with the same shape do not recompile.</li> <li>A different <strong>shape or dtype</strong> does.</li> <li>In practice, keep batch shapes constant. The smaller last mini-batch is a common culprit.</li> </ul> <h3 id="python-side-effects-run-only-while-tracing">Python side effects run only while tracing</h3> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@jax.jit</span>
+<span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">inside g:</span><span class="sh">"</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>    <span class="c1"># runs ONCE, during tracing
+</span>    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+</code></pre></div></div> <p>Called five times with the same shape, this prints <strong>once</strong>, and it prints <code class="language-plaintext highlighter-rouge">Traced&lt;ShapedArray(float32[3])&gt;</code> instead of numbers, because a tracer has no values. The compiled code contains only the math, so the later calls never execute the <code class="language-plaintext highlighter-rouge">print</code>.</p> <p>The same goes for appending to a list, incrementing a counter or writing a file: it happens once, then silently stops. This is why JAX functions must be <strong>pure</strong>, meaning the output depends only on the inputs. To print real values on every call, use <code class="language-plaintext highlighter-rouge">jax.debug.print("x = {}", x)</code>.</p> <h2 id="summary">Summary</h2> <ol> <li> <strong>A network fits the points it sees and nothing else.</strong> Fitting the data says nothing about where there are no data.</li> <li> <strong>Regression extrapolates only when its assumed form is right.</strong> A flexible model with no form, such as a neural network or a high-degree polynomial, fits the data and then drifts.</li> <li> <strong>A PINN supplies the missing rule.</strong> The equation’s residual needs no labels, so it constrains the network everywhere, and it controls the derivatives the data loss ignores.</li> <li> <strong>Reverse mode for the loss, forward mode for coordinate derivatives.</strong> One backward pass gives every parameter gradient.</li> <li> <strong><code class="language-plaintext highlighter-rouge">jit</code> traces once.</strong> A new shape recompiles, and Python side effects run only during tracing.</li> </ol> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Nishant Gupta. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/al-org-dev/al-folio-core" rel="external nofollow noopener" target="_blank">al-folio</a> runtime. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "About",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-research",
+          title: "Research",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/research/";
+          },
+        },{id: "nav-projects",
+          title: "Projects",
+          description: "A small set of engineering projects in retrieval, agent workflows, and research-adjacent tooling.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
+        },{id: "nav-publications",
+          title: "Publications",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "nav-learning",
+          title: "Learning",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/learning/";
+          },
+        },{id: "nav-contact",
+          title: "Contact",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/contact/";
+          },
+        },{id: "post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",
+        
+          title: 'Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra <svg width="1.2rem" height="1.2rem" top=".5rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "We’re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/", "_blank");
+          
+        },
+      },{id: "post-displaying-external-posts-on-your-al-folio-blog",
+        
+          title: 'Displaying External Posts on Your al-folio Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2", "_blank");
+          
+        },
+      },{id: "news-finished-my-phd-in-theoretical-physics-at-imsc-chennai",
+          title: 'Finished my PhD in theoretical physics at IMSc Chennai.',
+          description: "",
+          section: "News",},{id: "news-joined-niser-bhubaneswar-as-a-research-associate",
+          title: 'Joined NISER Bhubaneswar as a research associate.',
+          description: "",
+          section: "News",},{id: "news-started-as-a-development-engineer-at-eteam-india-working-with-target-india-in-bengaluru",
+          title: 'Started as a Development Engineer at eTeam India, working with Target India in...',
+          description: "",
+          section: "News",},{id: "news-released-pulsar-a-plain-english-search-for-physics-jobs",
+          title: 'Released Pulsar, a plain-English search for physics jobs.',
+          description: "",
+          section: "News",},{id: "projects-job-search-agent-pulsar-inspire-hep",
+          title: 'Job Search Agent — Pulsar (INSPIRE-HEP)',
+          description: "Natural-language search over INSPIRE-HEP physics job postings, with LLM query parsing, a pgvector semantic cache, multi-provider LLM failover, a guarded web-search fallback, and paper enrichment, deployed on Google Cloud Run with a Firebase-hosted frontend.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/1_project/";
+            },},{id: "projects-production-rag-system-rag-for-python-3-14",
+          title: 'Production RAG System — RAG-for-Python 3.14',
+          description: "A production RAG service combining dense vector search (Pinecone) and BM25 keyword scoring via Reciprocal Rank Fusion, with a change-aware ingestion pipeline, deployed on Google Cloud Run with a Firebase-hosted frontend.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/2_project/";
+            },},{
+        id: 'social-cv',
+        title: 'CV',
+        section: 'Socials',
+        handler: () => {
+          window.open("/assets/rendercv/rendercv_output/Nishant_Gupta_CV.pdf", "_blank");
+        },
+      },{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%6E%69%73%68%61%6E%74%67%75%70%74%61.%70%68%79@%67%6D%61%69%6C.%63%6F%6D", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/nisg-phys", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/nishantg93", "_blank");
+        },
+      },{
+        id: 'social-inspire',
+        title: 'Inspire HEP',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://inspirehep.net/authors/2148050", "_blank");
+        },
+      },{
+        id: 'social-rss',
+        title: 'RSS Feed',
+        section: 'Socials',
+        handler: () => {
+          window.open("/feed.xml", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>
