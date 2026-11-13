@@ -29,7 +29,7 @@ YAML
 
 bundle exec jekyll build --config "_config.yml,${tmp_override}" -d "${tmp_site}" >/dev/null
 
-about_page="${tmp_site}/about/index.html"
+about_page="${tmp_site}/contact/index.html"
 
 grep -q 'https://giscus.app/client.js' "${about_page}"
 grep -q 'id="giscus_thread"' "${about_page}"
